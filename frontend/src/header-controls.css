@@ -1,0 +1,64 @@
+/* Notifications are not part of the current product UI. */
+.bell{display:none!important}
+/* Keep the compact navigation logo proportional on smaller screens. */
+@media (max-width: 1100px) {
+  .mobile-title .brand img { width: 32px; height: 36px; }
+}
+
+@media (max-width: 600px) {
+  .mobile-title .brand img { width: 20px; height: 23px; }
+}
+
+/* Navigation feedback */
+.sidebar nav button,
+.drawer-content > button {
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.sidebar nav button:hover,
+.drawer-content > button:hover {
+  background: #171331;
+  color: #c7b8ff;
+  transform: translateX(3px);
+}
+
+.sidebar nav button.active:hover,
+.drawer-content > button.active:hover {
+  background: #2a1c72;
+  color: #fff;
+}
+
+.user-lookup-error-page {
+  min-height: 100vh;
+  margin-left: 206px;
+  padding: 24px;
+  background: #020916;
+}
+
+.user-lookup-error-header { display: flex; align-items: center; justify-content: space-between; }
+.user-lookup-error {
+  width: min(100%, 560px);
+  margin: 14vh auto 0;
+  padding: 42px;
+  text-align: center;
+  border: 1px solid #242b3d;
+  border-radius: 12px;
+  background: #050b17;
+}
+.user-lookup-error > span { display: inline-grid; width: 64px; height: 64px; place-items: center; border-radius: 50%; color: #ff6680; background: #2d121c; }
+.user-lookup-error h1 { margin: 20px 0 10px; font-size: 27px; }
+.user-lookup-error p { margin: 0 auto 26px; max-width: 390px; color: #9aa2b0; line-height: 1.55; }
+.user-lookup-error form { display: flex; align-items: center; gap: 10px; padding: 6px 6px 6px 13px; border: 1px solid #323746; border-radius: 8px; color: #9aa2b0; text-align: left; }
+.user-lookup-error input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: #fff; }
+.user-lookup-error button { border: 0; border-radius: 6px; padding: 9px 15px; background: #5d40bf; color: #fff; }
+.user-lookup-error button:hover { background: #7555dc; }
+
+@media (max-width: 1100px) {
+  .user-lookup-error-page { margin-left: 0; padding: 20px 24px; }
+}
+
+@media (max-width: 600px) {
+  .user-lookup-error-page { padding: 12px; }
+  .user-lookup-error { margin-top: 11vh; padding: 30px 18px; }
+  .user-lookup-error h1 { font-size: 23px; }
+}

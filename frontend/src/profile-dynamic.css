@@ -1,0 +1,13 @@
+.achievement-symbol.violet{color:#8668e8;background:#15122e}.achievement-symbol.teal{color:#16b6c6;background:#06252c}.achievement-symbol.magenta{color:#ee3b8c;background:#2c101a}.achievement-symbol.orange{color:#f06b20;background:#301714}.profile-achievement-empty{margin:24px 0;color:#8e96a4;text-align:center}
+
+/* Keep the profile achievement badges circular even when their card content wraps. */
+.profile-achievements article>.achievement-symbol{width:43px!important;height:43px!important;min-width:43px;min-height:43px;aspect-ratio:1/1;flex:0 0 43px;border-radius:50%!important;overflow:hidden}
+
+.profile-achievements{min-height:310px}.profile-achievements>div{margin-top:20px;margin-bottom:18px}.profile-achievements article{height:180px;padding:18px 10px 13px}.profile-achievements article small{min-height:28px;line-height:13px}.profile-achievements article em{margin-top:10px}
+
+@media(max-width:1100px){.profile-achievements{min-height:315px}.profile-achievements article{height:180px}}
+
+/* Match the Overview profile card proportions and keep bios from resizing the header. */
+.profile-hero{min-height:196px;padding:33px}.profile-identity{gap:30px}.profile-identity>div:last-child{width:275px}.profile-identity>div:last-child>p{width:275px;overflow-wrap:anywhere}
+@media(max-width:1100px){.profile-hero{min-height:201px;padding:25px 21px}.profile-identity>div:last-child,.profile-identity>div:last-child>p{width:260px}}
+@media(max-width:600px){.profile-identity>div:last-child,.profile-identity>div:last-child>p{width:auto;max-width:calc(100vw - 190px)}}

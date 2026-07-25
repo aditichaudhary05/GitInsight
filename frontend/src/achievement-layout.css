@@ -1,0 +1,2 @@
+/* Keep the unlock action anchored to the bottom of its dashboard card. */
+.unlocked-achievements{display:flex;flex-direction:column}.unlocked-achievements .achievement-grid{flex:1}.unlocked-achievements .achievement-link{margin-top:auto}
