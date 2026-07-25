@@ -18,6 +18,7 @@ import './profile-dynamic.css';
 import './achievement-layout.css';
 
 const iconMap = { home: Home, repo: FolderGit2, code: Code2, award: Award, user: UserRoundCheck, users: Users, star: Star, fork: GitFork, trophy: Trophy, clock: Clock3, calendar: CalendarDays, blocks: Blocks, refresh: RefreshCw, search: Search, bell: Bell, js: Braces, crown: Crown };
+const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
 function Icon({ name, size = 20 }) { const Glyph = iconMap[name] || CircleDot; return <Glyph className="icon" size={size} strokeWidth={2} aria-hidden="true" />; }
 
 const navigation = [['home', 'Overview'], ['repo', 'Repositories'], ['code', 'Languages'], ['award', 'Achievements'], ['user', 'Profile']];
@@ -198,7 +199,7 @@ function RepositoryPage({ username, overview, onMenu, avatar }) {
     if (tab === 'public' || tab === 'private') params.set('visibility', tab);
     if (tab === 'archived') params.set('archived', 'true');
     setLoading(true); setError('');
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/repositories/${encodeURIComponent(username)}?${params}`, { signal: controller.signal })
+    fetch(`${apiBaseUrl}/api/repositories/${encodeURIComponent(username)}?${params}`, { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject({ status: response.status }))
       .then(data => { setRepositories(data.repositories || []); setStatistics(data.statistics || {}); })
       .catch(fetchError => { if (fetchError.name !== 'AbortError') setError('Could not load repositories. Please try again.'); })
@@ -232,7 +233,7 @@ function LanguagePage({ username, onMenu, avatar, insights = [] }) {
   const [trendRange, setTrendRange] = useState('6');
   useEffect(() => {
     const controller = new AbortController(); setError('');
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/languages/${encodeURIComponent(username)}`, { signal: controller.signal })
+    fetch(`${apiBaseUrl}/api/languages/${encodeURIComponent(username)}`, { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(response))
       .then(setData)
       .catch(fetchError => { if (fetchError.name !== 'AbortError') setError('Could not load language analytics.'); });
@@ -279,7 +280,7 @@ function DynamicAchievementPage({ username, onMenu, onSearch, avatar }) {
   const submit = event => event.preventDefault();
   useEffect(() => {
     const controller = new AbortController(); setError('');
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/achievements/${encodeURIComponent(username)}`, { signal: controller.signal })
+    fetch(`${apiBaseUrl}/api/achievements/${encodeURIComponent(username)}`, { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(response))
       .then(payload => {
         const groupedHistory = (payload.pointHistory || []).reduce((groups, point) => {
@@ -349,7 +350,7 @@ function AllAchievementsPage({ username, avatar, onMenu, onBack }) {
   const [error, setError] = useState('');
   useEffect(() => {
     const controller = new AbortController(); setError('');
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/achievements/${encodeURIComponent(username)}`, { signal: controller.signal })
+    fetch(`${apiBaseUrl}/api/achievements/${encodeURIComponent(username)}`, { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(response))
       .then(payload => setAchievements(payload.unlocked || []))
       .catch(fetchError => { if (fetchError.name !== 'AbortError') setError('Could not load achievements.'); });
@@ -364,7 +365,7 @@ function LockedAchievementsPage({ username, avatar, onMenu, onBack }) {
   const [error, setError] = useState('');
   useEffect(() => {
     const controller = new AbortController(); setError('');
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/achievements/${encodeURIComponent(username)}`, { signal: controller.signal })
+    fetch(`${apiBaseUrl}/api/achievements/${encodeURIComponent(username)}`, { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(response))
       .then(payload => setAchievements(payload.locked || []))
       .catch(fetchError => { if (fetchError.name !== 'AbortError') setError('Could not load achievements.'); });
@@ -379,7 +380,7 @@ function ProfilePage({ username, profile = {}, stackLanguages = [], insights = [
   const [unlockedAchievements, setUnlockedAchievements] = useState([]);
   useEffect(() => {
     const controller = new AbortController();
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/profile/${encodeURIComponent(username)}`, { signal: controller.signal })
+    fetch(`${apiBaseUrl}/api/profile/${encodeURIComponent(username)}`, { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(response))
       .then(data => setDetails(data))
       .catch(fetchError => { if (fetchError.name !== 'AbortError') setDetails({}); });
@@ -387,7 +388,7 @@ function ProfilePage({ username, profile = {}, stackLanguages = [], insights = [
   }, [username]);
   useEffect(() => {
     const controller = new AbortController();
-    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/achievements/${encodeURIComponent(username)}`, { signal: controller.signal })
+    fetch(`${apiBaseUrl}/api/achievements/${encodeURIComponent(username)}`, { signal: controller.signal })
       .then(response => response.ok ? response.json() : Promise.reject(response))
       .then(data => setUnlockedAchievements(data.unlocked || []))
       .catch(fetchError => { if (fetchError.name !== 'AbortError') setUnlockedAchievements([]); });
@@ -445,7 +446,7 @@ export default function App() {
 
   useEffect(() => {
     const configuredEndpoint = import.meta.env.VITE_OVERVIEW_API_URL;
-    const endpoint = configuredEndpoint ? configuredEndpoint.replace(':username', encodeURIComponent(username)) : `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/overview/${encodeURIComponent(username)}`;
+    const endpoint = configuredEndpoint ? configuredEndpoint.replace(':username', encodeURIComponent(username)) : `${apiBaseUrl}/api/overview/${encodeURIComponent(username)}`;
     const controller = new AbortController();
     setError('');
     fetch(endpoint, { signal: controller.signal })

@@ -55,7 +55,7 @@ GitInsight is a GitHub profile analytics dashboard. Enter a GitHub username to e
 
 ## Frontend configuration
 
-Optional variables can be set in `frontend/.env`:
+Set the API base URL in `frontend/.env`. This is required when the frontend and backend are deployed separately:
 
 ```env
 VITE_GITHUB_USERNAME=octocat
@@ -64,7 +64,7 @@ VITE_API_BASE_URL=http://localhost:5000
 VITE_OVERVIEW_API_URL=http://localhost:5000/api/overview/:username
 ```
 
-Without `VITE_GITHUB_USERNAME`, the app searches `octocat` by default.
+For production, set `VITE_API_BASE_URL` to your deployed backend URL, for example `https://api.example.com`. If the app and API share a domain behind a reverse proxy, this variable may be omitted and the app will call relative `/api/...` routes. Without `VITE_GITHUB_USERNAME`, the app searches `octocat` by default.
 
 ## API endpoints
 
