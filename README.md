@@ -112,3 +112,4 @@ Gitinsight/
 
 - Never commit `backend/.env` or a GitHub token.
 - GitHub API availability and rate limits can affect data loading.
+.
