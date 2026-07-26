@@ -53,6 +53,15 @@
 .user-lookup-error button { border: 0; border-radius: 6px; padding: 9px 15px; background: #5d40bf; color: #fff; }
 .user-lookup-error button:hover { background: #7555dc; }
 
+/* Prevent the Overview profile card from crowding its profile details at tablet widths. */
+@media (min-width: 801px) and (max-width: 1320px) {
+  .profile-card { min-height: 201px; padding: 25px 21px; }
+  .profile-card .profile-avatar { width: 105px; height: 105px; }
+  .profile-card .profile-avatar::before { left: 30px; top: 20px; }
+  .profile-card .profile-avatar span { width: 92px; left: 2px; }
+  .profile-card .stats { width: 324px; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; padding: 20px 16px; }
+}
+
 @media (max-width: 1100px) {
   .user-lookup-error-page { margin-left: 0; padding: 20px 24px; }
 }
