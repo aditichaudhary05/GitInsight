@@ -226,7 +226,7 @@
   color: #aab1bd;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .achievement-grid .achievement-item {
     height: auto;
     min-height: 180px;

@@ -5,7 +5,7 @@
   .mobile-title .brand img { width: 32px; height: 36px; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .mobile-title .brand img { width: 20px; height: 23px; }
 }
 
@@ -57,7 +57,7 @@
   .user-lookup-error-page { margin-left: 0; padding: 20px 24px; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .user-lookup-error-page { padding: 12px; }
   .user-lookup-error { margin-top: 11vh; padding: 30px 18px; }
   .user-lookup-error h1 { font-size: 23px; }

@@ -10,4 +10,4 @@
 /* Match the Overview profile card proportions and keep bios from resizing the header. */
 .profile-hero{min-height:196px;padding:33px}.profile-identity{gap:30px}.profile-identity>div:last-child{width:275px}.profile-identity>div:last-child>p{width:275px;overflow-wrap:anywhere}
 @media(max-width:1100px){.profile-hero{min-height:201px;padding:25px 21px}.profile-identity>div:last-child,.profile-identity>div:last-child>p{width:260px}}
-@media(max-width:600px){.profile-identity>div:last-child,.profile-identity>div:last-child>p{width:auto;max-width:calc(100vw - 190px)}}
+@media(max-width:800px){.profile-identity>div:last-child,.profile-identity>div:last-child>p{width:auto;max-width:calc(100vw - 190px)}}
